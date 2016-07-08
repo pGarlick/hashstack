@@ -11,6 +11,7 @@ sources:
 build_stages:
   - when: platform == 'linux'
     name: create-site.cfg
+    after: prologue
     before: install
     handler: bash
     bash: |
@@ -23,6 +24,7 @@ build_stages:
 
   - when: platform == 'linux'
     name: set-LDFLAGS
+    after: prologue
     before: install
     handler: bash
     bash: |
