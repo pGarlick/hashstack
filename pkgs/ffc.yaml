@@ -1,7 +1,7 @@
 extends: [pip_package]
 dependencies:
-  build: [fiat, instant, numpy, six, ufl, swig]
-  run: [fiat, instant, numpy, six, ufl, swig]
+  build: [dijitso, fiat, instant, numpy, six, ufl, swig]
+  run: [dijitso, fiat, instant, numpy, six, ufl, swig]
 
 sources:
 - key: tar.gz:kjbqzzgh2v6odoa6wx5tasmser6jis6g
