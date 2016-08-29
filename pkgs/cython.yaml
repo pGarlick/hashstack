@@ -1,4 +1,4 @@
-extends: [distutils_package]
+extends: [pip_package]
 
 sources:
 - key: tar.gz:iqajqxtqrijqcfgww7vbkl7dxpgmj333
