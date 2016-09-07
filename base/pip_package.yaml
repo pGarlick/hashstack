@@ -12,7 +12,7 @@ build_stages:
   after: prologue
   handler: bash
   bash: |
-    ${PYTHON} -m pip install --verbose --no-deps --upgrade --prefix=${ARTIFACT} .
+    ${PYTHON} -m pip install --verbose --no-cache-dir --no-deps --upgrade --prefix=${ARTIFACT} .
 
 profile_links:
 - name: python_packages
