@@ -4,5 +4,5 @@ dependencies:
   run: [dolfin, ffc, fiat, instant, numpy, scipy, ufl, fenicstools, mpi4py]
 
 sources:
-- key: git:fe075e5e7cf4eabc2d4bd7e33d426ae1a9e95c00
-  url: https://bitbucket.org/simula_cbc/cbcpost.git
+- key: tar.gz:ahy5qomw665mzsd5m7v6bbf6sbpvk3yu
+  url: https://bitbucket.org/simula_cbc/cbcpost/get/v1.5.tar.gz
