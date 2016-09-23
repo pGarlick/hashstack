@@ -1,0 +1,8 @@
+extends: [setuptools_package]
+dependencies:
+  build: [dolfin, numpy, ipython, ufl]
+  run: [dolfin, numpy, ipython, ufl]
+
+sources:
+- key: git:ac52efaf028f7ea482bb1081e3f6db06be75e5a5
+  url: git://github.com/funsim/moola.git
