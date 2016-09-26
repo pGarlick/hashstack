@@ -1,0 +1,75 @@
+# Note: make sure to load the gcc/5.1.0 module before building this profile
+
+extends:
+- file: linux.yaml
+
+parameters:
+  HOST_MPICC: /cluster/software/VERSIONS/openmpi.gnu-1.8.8/bin/mpicc
+  HOST_MPICXX: /cluster/software/VERSIONS/openmpi.gnu-1.8.8/bin/mpic++
+  HOST_MPIF77: /cluster/software/VERSIONS/openmpi.gnu-1.8.8/bin/mpif77
+  HOST_MPIF90: /cluster/software/VERSIONS/openmpi.gnu-1.8.8/bin/mpif90
+  HOST_MPIEXEC: /cluster/software/VERSIONS/openmpi.gnu-1.8.8/bin/mpiexec
+  HOST_CMAKE: /cluster/software/VERSIONS/cmake-3.1.0/bin/cmake
+  PROLOGUE: |
+    source /usr/share/Modules/init/bash; export MODULEPATH=/usr/share/Modules/modulefiles:/etc/modulefiles:/cluster/etc/modulefiles; echo "loading modules"; module load gcc/5.1.0; module load openmpi.gnu/1.8.8; module load cmake/3.1.0; echo "setting default compilers"; export CC=gcc; export CXX=g++; export FC=gfortran; export F77=gfortran; export F90=gfortran;
+
+packages:
+  launcher:
+  cmake:
+    use: host-cmake
+  python:
+    link: shared
+  mpi:
+    use: host-mpi
+  blas:
+    use: openblas
+  lapack:
+    use: openblas
+  hypre:
+    with_openblas: true
+  petsc:
+    version: '3.6.1'
+    build_with: |
+      parmetis, scotch, suitesparse, superlu_dist, hypre, openblas
+    download: |
+      ml, scalapack, blacs, mumps
+    coptflags: -O3 -march=native -mtune=native
+    link: shared
+    debug: false
+  petsc4py:
+    version: '3.6.0'
+  slepc:
+    version: '3.6.1'
+  slepc4py:
+    version: '3.6.0'
+  boost:
+    toolset: gcc
+    address_model: 64
+  numpy:
+  scipy:
+    with_openblas: true
+#  ipython:
+  fiat:
+  ufl:
+  ffc:
+  instant:
+  dolfin:
+    build_with: |
+      suitesparse, scotch, parmetis, petsc, petsc4py, slepc, slepc4py, zlib, hdf5, bzip2, openblas
+  mshr:
+  dijitso:
+  libadjoint:
+    build_with: |
+      python
+  dolfin-adjoint:
+  mpi4py:
+  h5py:
+  matplotlib:
+  gotran:
+    sources:
+    - key: git:cac1f5d42bac85a047b6a444bce9d03b8d173bc4
+      url: https://bitbucket.org/johanhake/gotran.git
+  modelparameters:
+    sources:
+    - key: git:9067fa5abfce360c04ce2e954c6f45dde504ced9
+      url: https://bitbucket.org/johanhake/modelparameters.git
