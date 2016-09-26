@@ -13,6 +13,8 @@ sources:
 defaults:
   # Build with OpenBLAS
   with_openblas: false
+  # Build with Intel MKL
+  with_mkl: false
 
 build_stages:
   - when: platform == 'linux' and not with_openblas
@@ -26,7 +28,32 @@ build_stages:
       export BLAS=$LAPACK_DIR
       export LAPACK=$LAPACK_DIR
 
-  - when: platform == 'linux' and with_openblas
+  - when: with_mkl
+    name: create-site.cfg
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      cat > site.cfg << EOF
+      [mkl]
+      library_dirs = ${MKLPATH}
+      include_dirs = ${MKLROOT}/include
+      mkl_libs = mkl_intel_lp64, mkl_sequential, mkl_core
+      lapack_libs = mkl_intel_lp64, mkl_sequential, mkl_core
+      EOF
+
+  - when: with_mkl
+    name: set-LDFLAGS
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${MKLPATH} $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export LAPACK=None
+      export BLAS=None
+      export ATLAS=None
+
+  - when: platform == 'linux' and with_openblas and not with_mkl
     name: set-lapack-paths
     after: libflags
     before: install
