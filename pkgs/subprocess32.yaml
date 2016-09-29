@@ -1,0 +1,5 @@
+extends: [pip_package]
+
+sources:
+- key: tar.gz:a6oaf27dhdxadfyqtw7c7t3p3xxxo25m
+  url: https://github.com/google/python-subprocess32/archive/3.2.7.tar.gz
