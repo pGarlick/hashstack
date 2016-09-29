@@ -1,7 +1,7 @@
 extends: [pip_package]
 dependencies:
-  build: [mpi4py, numpy, six]
-  run: [mpi4py, numpy, six]
+  build: [mpi4py, numpy, six, subprocess32]
+  run: [mpi4py, numpy, six, subprocess32]
 
 sources:
 - key: tar.gz:amakzmnzx6kojxrgbznuf5jklopvcwsw
