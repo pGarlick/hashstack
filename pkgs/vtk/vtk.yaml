@@ -45,6 +45,7 @@ build_stages:
     - '-D VTK_USE_GL2PS:BOOL=ON'
     - '-D CMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib"'
     - '-D VTK_USE_SYSTEM_TIFF:BOOL=ON'
+    - '-D VTK_RENDERING_BACKEND:STRING="OpenGL"'
 
 - when: vtk_use_tk
   name: configure
