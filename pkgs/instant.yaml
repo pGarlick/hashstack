@@ -1,7 +1,7 @@
 extends: [pip_package]
 dependencies:
-  build: [numpy]
-  run: [cmake, flufl_lock, numpy, swig]
+  build: [numpy, six, subprocess32]
+  run: [cmake, flufl_lock, numpy, swig, six, subprocess32]
 
 sources:
 - key: tar.gz:ppydzct3mh6r4qzlr45aibkbbltirexl
