@@ -31,6 +31,13 @@ build_stages:
   bash: |
     patch -p1 < _hashdist/dolfin-cmake-find_path.patch
 
+- name: cmake-find-hdf5
+  before: setup_builddir
+  handler: bash
+  files: [dolfin-cmake-find-hdf5.patch]
+  bash: |
+    patch -p1 --dry-run < _hashdist/dolfin-cmake-find-hdf5.patch && patch -p1 < _hashdist/dolfin-cmake-find-hdf5.patch
+
 - name: set_python_version
   after: setup_builddir
   handler: bash
