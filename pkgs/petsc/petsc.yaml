@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [blas, lapack, mpi, python, {{build_with}}]
+  build: [cmake, blas, lapack, mpi, python, {{build_with}}]
 
 when version == '3.7.4':
   sources:

@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [petsc, python]
+  build: [cmake, petsc, python]
 
 when version == '3.7.3':
   sources:
