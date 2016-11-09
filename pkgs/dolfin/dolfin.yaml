@@ -29,7 +29,7 @@ build_stages:
   handler: bash
   files: [dolfin-cmake-find_path.patch]
   bash: |
-    patch -p1 < _hashdist/dolfin-cmake-find_path.patch
+    patch -p1 --dry-run < _hashdist/dolfin-cmake-find_path.patch && patch -p1 < _hashdist/dolfin-cmake-find_path.patch
 
 - name: cmake-find-hdf5
   before: setup_builddir
