@@ -114,7 +114,8 @@ def configure(ctx, stage_args):
             libopenblas = '${OPENBLAS_DIR}/lib/libopenblas.so'
         conf_lines.append('--with-blas-lapack-lib=%s' % libopenblas)
     else:
-        conf_lines.append('--with-blas-lapack-lib="${LAPACK_LDFLAGS}"')
+        if ctx.parameters['platform'] != 'Darwin':
+            conf_lines.append('--with-blas-lapack-lib="${LAPACK_LDFLAGS}"')
 
     # Special case, ParMETIS also provides METIS
     if 'PARMETIS' in ctx.dependency_dir_vars:
