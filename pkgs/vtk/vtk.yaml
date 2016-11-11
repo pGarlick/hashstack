@@ -83,7 +83,7 @@ build_stages:
   after: install
   handler: bash
   bash: |
-    for vtklib in ${ARTIFACT}/lib*.dylib; do
+    for vtklib in ${ARTIFACT}/lib/lib*.dylib; do
         if [ ! -L ${vtklib} ]; then
             install_name_tool -id @rpath/$(basename ${vtklib}) ${vtklib}
             otool -L ${vtklib} | while read line; do
