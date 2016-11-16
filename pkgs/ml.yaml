@@ -52,7 +52,6 @@ build_stages:
     - '--enable-mpi'
     - '--with-cflags="${CFLAGS} -fPIC -DMPICH_SKIP_MPICXX -DOMPI_SKIP_MPICXX"'
     - '--with-cxxflags="${CXXFLAGS} -fPIC -DMPICH_SKIP_MPICXX -DOMPI_SKIP_MPICXX"'
-    - '--with-ldflags=-lstdc++'
     - 'CC=${MPICC}'
     - 'CXX=${MPICXX}'
     - when fortran:
