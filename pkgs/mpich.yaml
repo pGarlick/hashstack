@@ -3,6 +3,13 @@ dependencies:
   build: [libxml2, pkg-config]
 
 build_stages:
+  - name: unset_F90
+    before: configure
+    handler: bash
+    bash: |
+      unset F90
+      unset F90FLAGS
+
   - name: configure
     mode: update
     extra: ['--enable-shared']
