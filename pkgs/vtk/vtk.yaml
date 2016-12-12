@@ -13,7 +13,7 @@ dependencies:
 sources:
 - key: tar.gz:pcuzbik6vv443r2s5bvyht5lpw7vw7xv
   url: http://www.vtk.org/files/release/7.0/VTK-7.0.0.tar.gz
-    
+
 defaults:
   relocatable: false
   vtk_use_tk: false
@@ -37,7 +37,7 @@ build_stages:
     patch -p1 < _hashdist/vtk-gcc-6.patch
 
 - name: configure
-  extra: 
+  extra:
     - '-D BUILD_TESTING:BOOL=OFF'
     - '-D BUILD_EXAMPLES:BOOL=OFF'
     - '-D BUILD_SHARED_LIBS:BOOL=ON'
@@ -84,6 +84,25 @@ build_stages:
   handler: bash
   bash: |
     for vtklib in ${ARTIFACT}/lib/lib*.dylib; do
+        if [ ! -L ${vtklib} ]; then
+            install_name_tool -id @rpath/$(basename ${vtklib}) ${vtklib}
+            otool -L ${vtklib} | while read line; do
+                set +e
+                lib=$(echo $line | sed 's/\(lib.*\.dylib\).*/\1/' | grep ^lib)
+                set -e
+                if [ ! -z ${lib} ]; then
+                    install_name_tool -change ${lib} @rpath/${lib} ${vtklib}
+                fi
+            done
+        fi
+    done
+
+- when: platform == 'Darwin' and vtk_wrap_python
+  name: rpath_fix_python
+  after: install
+  handler: bash
+  bash: |
+    for vtklib in ${ARTIFACT}/lib/python{{pyver}}/site-packages/vtk/*.so; do
         if [ ! -L ${vtklib} ]; then
             install_name_tool -id @rpath/$(basename ${vtklib}) ${vtklib}
             otool -L ${vtklib} | while read line; do
