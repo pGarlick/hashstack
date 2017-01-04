@@ -1,7 +1,7 @@
 extends: [cmake_package]
 
 dependencies:
-  build: [python, boost, dolfin, gmp, mpfr, mpi, swig, {{build_with}}]
+  build: [pkg-config, python, boost, dolfin, gmp, mpfr, mpi, swig, {{build_with}}]
 
 sources:
 - key: tar.gz:m4wkxp4w33t52pfgia6g2sywrprdxl3k
