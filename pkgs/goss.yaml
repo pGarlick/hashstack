@@ -1,0 +1,8 @@
+extends: [cmake_package]
+dependencies:
+  build: [boost, swig]
+  run: [boost, swig]
+
+sources:
+- key: zip:hura7cntcvxaahvdv226bflfohd2m4m2
+  url: https://bitbucket.org/johanhake/goss/get/7cd917391ecc.zip
