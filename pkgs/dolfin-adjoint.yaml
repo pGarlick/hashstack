@@ -1,6 +1,6 @@
 extends: [distutils_package]
 dependencies:
-  build: [gccxml, libadjoint, petsc, slepc]
+  build: [libadjoint, petsc, slepc]
   run: [dolfin, ffc, fiat, instant, libadjoint, numpy, scipy, ufl]
 
 sources:
