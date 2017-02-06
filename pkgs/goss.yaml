@@ -1,7 +1,7 @@
 extends: [cmake_package]
 dependencies:
-  build: [boost, swig]
-  run: [boost, swig]
+  build: [boost, swig, numpy, python]
+  run: [boost, swig, numpy, python]
 
 sources:
 - key: zip:hura7cntcvxaahvdv226bflfohd2m4m2
