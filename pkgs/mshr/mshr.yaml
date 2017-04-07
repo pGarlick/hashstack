@@ -25,3 +25,11 @@ build_stages:
   extra: ['-D BUILD_SHARED_LIBS:BOOL=ON',
           '-D BOOST_ROOT:PATH="${BOOST_DIR}"',
           '-D CMAKE_MACOSX_RPATH:BOOL=ON']
+
+- when: platform == 'Darwin'
+  name: fix-rpath
+  after: install
+  handler: bash
+  bash: |
+    install_name_tool -add_rpath ${BOOST_DIR}/lib ${ARTIFACT}/lib/python{{pyver}}/site-packages/_mshr.so
+    install_name_tool -add_rpath ${VTK_DIR}/lib ${ARTIFACT}/lib/python{{pyver}}/site-packages/_mshr.so
