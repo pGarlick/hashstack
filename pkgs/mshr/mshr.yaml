@@ -1,7 +1,8 @@
 extends: [cmake_package]
 
 dependencies:
-  build: [pkg-config, python, boost, dolfin, gmp, mpfr, mpi, swig, {{build_with}}]
+  # FIXME: Find a better way than including petsc and slepc here
+  build: [pkg-config, python, boost, dolfin, gmp, mpfr, mpi, swig, petsc, slepc, {{build_with}}]
 
 sources:
 - key: tar.gz:m4wkxp4w33t52pfgia6g2sywrprdxl3k
